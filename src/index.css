@@ -2,12 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  background-color: #2f2f2f;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}
+
+@tailwind utilities;
+
+.cart {
+  width: 23rem;
+  margin-top: 1.5rem;
+  margin-left: -20rem;
+  background: white;
+  padding: 0.5rem;
+  color: black;
+  border: 1px solid black;
 }
