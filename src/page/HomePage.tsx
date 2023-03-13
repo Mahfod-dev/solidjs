@@ -1,12 +1,8 @@
 import { createMemo,Component, For} from 'solid-js';
 import { Link } from 'solid-app-router';
-import type { Product } from '../interface/product';
+import { products,search,onAddToCart } from '../store/store';
 
-export const HomePage: Component<{
-	products: () => Product[];
-	onAddToCart: (product: Product) => void;
-	search:()=> string;
-}> = ({ products, onAddToCart, search }) => {
+export const HomePage: Component = () => {
 	
     
     const filteredProducts = createMemo(
@@ -62,7 +58,7 @@ export const HomePage: Component<{
 								</div>
 								<button
 									onClick={(evt) => {
-										evt.stopPropagation();
+										evt.preventDefault();
 										onAddToCart(product);
 									}}
 									class='text-lg px-8 py-1 font-bold bg-blue-800 text-white rounded-full'

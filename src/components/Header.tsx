@@ -1,17 +1,12 @@
 import { createMemo, Component, For } from 'solid-js';
 import { Link } from 'solid-app-router';
-import { Product } from '../interface/product';
+
 
 // import type { Product } from '../product';
+import { cart,search,onAddToCart,onClearCart,onSetSearch } from '../store/store';
 
 
-
-export const Header: Component<{
-	cart: ()=> Product[];
-	onClearCart: () => void;
-	search:()=> string;
-	onSetSearch: (search: string) => void;
-}> = ({ cart, onClearCart, search, onSetSearch }) => {
+export const Header: Component = () => {
 	const total = createMemo(() =>
 		 cart().reduce((total, p) => total + p.price, 0)
 	);
@@ -34,7 +29,7 @@ export const Header: Component<{
 			</div>
 			<div class='px-10 py-2 justify-end has-tooltip'>
 				<span class='tooltip cart'>
-					<div>Cart ({(cart ?? []).length})</div>
+					<div>Cart ({cart().length})</div>
 
 					<For each={cart()}>
 						{(p) => (
@@ -73,7 +68,7 @@ export const Header: Component<{
 					</div>
 				</span>
 				<i class='fas fa-shopping-cart mr-2'></i>
-				<span class='font-bold text-xl'>{(cart ?? []).length}</span>
+				<span class='font-bold text-xl'>{cart().length}</span>
 			</div>
 		</div>
 	);
